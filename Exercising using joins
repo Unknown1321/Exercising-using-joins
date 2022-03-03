@@ -1,0 +1,84 @@
+use ap;
+
+-- Exercise 1 Exercising using joins
+
+/*SELECT vendor_contact_first_name, vendor_contact_last_name, default_terms_id, credit_total, payment_date
+FROM vendors
+INNER JOIN invoices
+ON vendors.vendor_id = invoices.invoice_id
+WHERE payment_date BETWEEN '2014-06-01' AND '2014-07-00'
+ORDER BY vendor_name*/
+
+-- Exercise 2 Exercising using joins
+
+/*SELECT vendor_name, vendor_city, vendor_state, line_item_amount, account_number
+FROM vendors
+INNER JOIN invoice_line_items
+ON vendors.vendor_id = invoice_line_items.invoice_id
+WHERE vendor_name LIKE 'a%' AND (line_item_amount + account_number > 1000.00) 
+OR vendor_name LIKE 'c%' AND (line_item_amount + account_number > 1000.00)
+ORDER BY account_number*/
+
+-- Exercise 3 Exercising using joins
+
+/*SELECT vendor_name, vendor_address1, vendor_address2, vendor_state, 
+vendor_contact_last_name, vendor_contact_first_name, vendor_id
+FROM vendors
+WHERE vendor_state = 'CA' 
+AND vendor_contact_last_name LIKE '%on%' 
+OR vendor_contact_first_name LIKE'%on%'
+OR vendor_contact_last_name LIKE '%ny%' 
+OR vendor_contact_first_name LIKE'%ny%'
+ORDER BY vendor_contact_last_name*/
+
+-- Exercise 4 Exercising using joins
+
+-- SELECT * FROM invoices;
+
+/*SELECT vendor_id, invoice_number, invoice_due_date, account_number, 
+line_item_amount, line_item_description
+FROM invoices
+INNER JOIN invoice_line_items
+ON invoices.invoice_id = invoice_line_items.invoice_id
+WHERE line_item_description = 'freight'
+AND (account_number = 520
+OR account_number = 553
+OR account_number = 572)
+ORDER BY vendor_id DESC;*/
+
+-- Exercise 5 Exercising using joins
+
+/*SELECT last_name, first_name, invoice_id, invoice_due_date
+FROM vendor_contacts
+INNER JOIN invoices
+ON vendor_contacts.vendor_id = invoices.invoice_id
+WHERE last_name = 'Onandonga' AND first_name = 'Bruce' AND invoice_due_date BETWEEN '2014-06-01' AND '2014-07-01'
+ORDER BY invoice_due_date;*/
+
+-- Exercise 6 Exercising using joins
+
+/*SELECT vendor_contact_first_name, vendor_contact_last_name, vendor_phone, vendor_city, 
+vendor_state, vendor_zip_code, invoice_due_date
+FROM vendors
+INNER JOIN invoices
+ON vendors.vendor_id = invoices.invoice_id
+WHERE vendor_contact_last_name LIKE 'M%'
+AND invoice_due_date BETWEEN '2014-06-16' AND '2014-07-11'
+ORDER BY invoice_due_date ASC;*/
+
+-- Exercise 7 Exercising using joins, Couldn't add the column where I printed the value of it afterwards, maybe I should make a new table but didn't do that.
+
+/*SELECT vendor_name, vendor_phone, vendor_city, 
+vendor_state, vendor_zip_code, invoice_due_date
+FROM vendors
+INNER JOIN invoices
+ON vendors.vendor_id = invoices.invoice_id
+WHERE invoice_due_date BETWEEN '2014-07-01' AND '2014-07-31'
+ORDER BY invoice_due_date ASC;
+
+ALTER TABLE vendors
+ADD invoice_account_total INT NOT NULL;
+
+UPDATE vendors
+SET invoice_account_total = ((invoice_total + payment_total))
+WHERE vendor_name = 'US Postal Service'*/
